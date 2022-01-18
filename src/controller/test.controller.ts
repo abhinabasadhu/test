@@ -15,25 +15,29 @@ export async function getData() {
     }
 }
 getData();
+
 export async function dataWithId(req: Request, res: Response) {
-    const { id } = req.body;
+    const id = Number(req.body.id)
     if (!id) {
-        res.send("Id is missing or invalid");
+        return res.send("Id is missing or invalid");
     }
-    for (let item of fileData.tracks) {
+    for (const item of fileData.tracks) {
+
         if (item.id === id) {
-            res.send({ title: item.title, artist: item.artist });
+            return res.status(200).send({ title: item.title, artist: item.artist });
         }
     }
 }
+
 export async function dataWithArtist(req: Request, res: Response) {
     const { artist } = req.body;
     if (!artist) {
-        res.send("Artist is missing or invalid ");
+        return res.send("Artist is missing or invalid ");
     }
-    for (let item of fileData.tracks) {
+    for (const item of fileData.tracks) {
         if (item.artist === artist) {
-            res.send({ id: item.id, title: item.title })
+            return res.send({ id: item.id, title: item.title })
         }
     }
+    return res.status(200).send({})
 }
