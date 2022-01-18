@@ -4,7 +4,7 @@ let fileData: any;
 export async function getData() {
     try {
         fs.createReadStream(
-            "/Users/ifancydat/Desktop/test-click/backend/src/controller/utils/text.txt")
+            "/Users/ifancydat/Desktop/test-click/backend/src/controller/utils/text.json")
             .on("data", (data: Buffer) => {
                 let newData = data.toString();
                 let data2 = JSON.parse(newData)
