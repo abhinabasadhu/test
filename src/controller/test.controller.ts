@@ -28,7 +28,8 @@ export async function dataWithId(req: Request, res: Response) {
         }
     }
 }
-
+// for now just gives only one set of the data
+// could have used array.filter for all related data with artist name
 export async function dataWithArtist(req: Request, res: Response) {
     const { artist } = req.body;
     if (!artist) {
@@ -36,7 +37,8 @@ export async function dataWithArtist(req: Request, res: Response) {
     }
     for (const item of fileData.tracks) {
         if (item.artist === artist) {
-            return res.send({ id: item.id, title: item.title })
+            console.log(item)
+            return res.send(item)
         }
     }
     return res.status(200).send({})
