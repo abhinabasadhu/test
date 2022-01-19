@@ -1,10 +1,11 @@
 import { Response, Request } from "express";
 import fs from "fs";
+import path from "path";
 let fileData: any;
 export async function getData() {
+    let jsonPath = path.join(__dirname, '..', 'controller', 'utils', 'text.json');
     try {
-        fs.createReadStream(
-            "/Users/ifancydat/Desktop/test-click/backend/src/controller/utils/text.json")
+        fs.createReadStream(jsonPath)
             .on("data", (data: Buffer) => {
                 let newData = data.toString();
                 let data2 = JSON.parse(newData)
